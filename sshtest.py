@@ -14,7 +14,7 @@ def open_ssh_conn(ip):
         #loop counter
         #Defining the credentials file
         #user_file = sys.argv[1]
-        print "print in testbranch1"
+        print "pulled it down"
         user = raw_input("Enter the username and hit enter ")
         
         #defining the commands file
