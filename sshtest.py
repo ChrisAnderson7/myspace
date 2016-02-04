@@ -54,7 +54,7 @@ def open_ssh_conn(ip):
         time.sleep(1)
         
         #Entering global config mode
-        connection.send("\n")
+        #connection.send("\n")
         connection.send("configure terminal\n")
         time.sleep(1)
         
@@ -63,9 +63,9 @@ def open_ssh_conn(ip):
 
         if (cmd_file == 'hpcmd.txt'):
             selected_cmd_file = open(cmd_file,'r')
+            selected_cmd_file.seek(0)
             doloop = 'true'
             #starting from the begining of file
-            selected_cmd_file.seek(0)
         else:
             doloop =  'false'
             print "\n"
@@ -82,12 +82,12 @@ def open_ssh_conn(ip):
             #writing each line in the file to the device
             for each_line in selected_cmd_file.readlines():
             
-                #print "entering the connection send stuff"
-                connection.send(each_line + '\n')
+                #print "entering the connection.send stuff"
+                connection.send(each_line)
                 #connection.send("write memory" + '\n')
                 #print "each line -> %s " % each_line
-                #print "exiting the connection stuff"
-                time.sleep(1)
+                #print "------------------------------"
+                time.sleep(2)
             
                 #closing the user file
                 #selected_user_file.close()
@@ -99,7 +99,7 @@ def open_ssh_conn(ip):
                 router_output =  connection.recv(65535)
 
                 #checking command output of IOS syntax errors
-                if re.search(r"Invalid input:", router_output) or re.search(r"IOError:", router_output):
+                if re.search(r"Invalid input: ", router_output):
                     print "------------------Error Handling BEGIN---------------------------------------------"
                     print "There was at least one IOS syntax error on device %s" % ip
                     print "There may be a syntax error in the following line -> " + each_line
@@ -114,7 +114,7 @@ def open_ssh_conn(ip):
 
                 #closing the connection
                 session.close()
-                doloop = 'false'
+            doloop = 'false'
 
         print "\n"
         print " Program Results...."

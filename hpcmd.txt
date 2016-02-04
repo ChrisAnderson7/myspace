@@ -1,2 +1,2 @@
-no ip icmp unreachable
+Nipper_ip icmp unreachable
 snmp-server community "ro2" Operator
