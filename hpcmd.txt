@@ -1,3 +1,2 @@
-xsnmp-server community "ro" Operator
 no ip icmp unreachable
 snmp-server community "ro2" Operator
